@@ -1,7 +1,7 @@
 const express = require("express");
 const { db } = require("../configs/db");
 const { User } = require("../models/userModel");
-const axios = require("axios")
+const axios = require("axios");
 
 const userRouter = express.Router();
 
@@ -20,12 +20,15 @@ userRouter.get("/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
 
-    const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/users/${userId}`
-    );
-    const user = response.data;
+    try {
+      const user = await User.findOne({ id: userId });
+      const userExists = user !== null;
 
-    res.json(user);
+      res.json({ userExists });
+    } catch (error) {
+      console.error("Error checking user existence:", error);
+      res.status(500).json({ error: "Failed to check user existence" });
+    }
   } catch (error) {
     console.error("Error fetching user from API:", error);
     res.status(500).json({ error: "Failed to fetch user from API" });
@@ -37,9 +40,9 @@ userRouter.post("/addUser", async (req, res) => {
 
   try {
     // Check if user already exists in the database
-    const existingUser = await User.findOne({ email: userData.email });
+    const isExistingUser = await User.findOne({ email: userData.email });
 
-    if (existingUser) {
+    if (isExistingUser) {
       res.json({ message: "User already exists", showOpenButton: true });
     } else {
       const newUser = new User(userData);
