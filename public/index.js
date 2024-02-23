@@ -29,6 +29,7 @@ fetchUsers.addEventListener("click", () => {
         let openButton = document.createElement("button");
         openButton.textContent = "Open";
         openButton.setAttribute("disabled", "true");
+        openButton.setAttribute("onClick", `redirectToPostPage(${e.id})`)
 
         let addButton = document.createElement("button");
         addButton.textContent = "Add";
@@ -73,3 +74,8 @@ fetchUsers.addEventListener("click", () => {
       });
     });
 });
+
+
+function redirectToPostPage(userId) {
+  window.location.href = `post.html?userId=${userId}`;
+}

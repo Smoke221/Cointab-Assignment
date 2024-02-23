@@ -24,7 +24,7 @@ userRouter.get("/:userId", async (req, res) => {
       const user = await User.findOne({ id: userId });
       const userExists = user !== null;
 
-      res.json({ userExists });
+      res.json({ user, userExists });
     } catch (error) {
       console.error("Error checking user existence:", error);
       res.status(500).json({ error: "Failed to check user existence" });
