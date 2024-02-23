@@ -1,5 +1,7 @@
 const express = require("express");
 const { db } = require("../configs/db");
+const { User } = require("../models/userModel");
+const axios = require("axios")
 
 const userRouter = express.Router();
 
@@ -14,24 +16,39 @@ userRouter.get("/users", async (req, res) => {
   }
 });
 
-userRouter.post("/addUser", (req, res) => {
-  const user = req.body;
+userRouter.get("/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
 
-  // Check if the user already exists in the database
-  db.query("SELECT * FROM users WHERE id = ?", [user.id], (error, results) => {
-    if (error) throw error;
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/users/${userId}`
+    );
+    const user = response.data;
 
-    if (results.length > 0) {
-      // User already exists, show "Open" button and hide "Add" button
-      res.json({ status: "User already exists" });
+    res.json(user);
+  } catch (error) {
+    console.error("Error fetching user from API:", error);
+    res.status(500).json({ error: "Failed to fetch user from API" });
+  }
+});
+
+userRouter.post("/addUser", async (req, res) => {
+  const userData = req.body;
+
+  try {
+    // Check if user already exists in the database
+    const existingUser = await User.findOne({ email: userData.email });
+
+    if (existingUser) {
+      res.json({ message: "User already exists", showOpenButton: true });
     } else {
-      // User does not exist, add to the database
-      db.query("INSERT INTO users SET ?", user, (error, result) => {
-        if (error) throw error;
-        res.json({ status: "User added to the database" });
-      });
+      const newUser = new User(userData);
+      await newUser.save();
+      res.json({ message: "User added successfully", showOpenButton: false });
     }
-  });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 module.exports = { userRouter };

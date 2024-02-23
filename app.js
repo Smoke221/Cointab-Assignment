@@ -1,7 +1,7 @@
 const express = require("express");
 const { userRouter } = require("./routes/allUsers");
-const db = require("./configs/db");
-
+const { connection } = require("./configs/db");
+const { postRouter } = require("./routes/posts");
 
 require("dotenv").config();
 const app = express();
@@ -13,13 +13,14 @@ app.get("/", (req, res) => {
     `);
 });
 
-app.use("/", userRouter)
+app.use("/", userRouter);
+app.use("/posts", postRouter)
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, async () => {
   try {
-    await db;
+    await connection;
     console.log("Connected to DB");
   } catch (err) {
     console.log(err.message);
