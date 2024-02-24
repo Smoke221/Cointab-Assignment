@@ -1,7 +1,7 @@
 const fetchUsers = document.querySelector(".alluser-btn");
 const usersContainer = document.querySelector("#users-info");
 fetchUsers.addEventListener("click", () => {
-  fetch("http://localhost:8000/users")
+  fetch("https://cointab-assignment-gec5.onrender.com/users")
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -34,7 +34,7 @@ fetchUsers.addEventListener("click", () => {
         let addButton = document.createElement("button");
         addButton.textContent = "Add";
         addButton.addEventListener("click", () => {
-          fetch("http://localhost:8000/addUser", {
+          fetch("https://cointab-assignment-gec5.onrender.com/addUser", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -45,7 +45,7 @@ fetchUsers.addEventListener("click", () => {
 
         // Fetch user existence information when rendering the user list
         const userExistenceResponse = await fetch(
-          `http://localhost:8000/${e.id}`
+          `https://cointab-assignment-gec5.onrender.com/${e.id}`
         );
         const userExistenceData = await userExistenceResponse.json();
 

@@ -7,7 +7,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get("userId");
 
 // Fetch user
-fetch(`http://localhost:8000/${userId}`)
+fetch(`https://cointab-assignment-gec5.onrender.com/${userId}`)
   .then((res) => res.json())
   .then((data) => {
     // console.log(data);
@@ -15,7 +15,7 @@ fetch(`http://localhost:8000/${userId}`)
     displayUser(data.user);
   });
 // Fetch posts for the specific user
-fetch(`http://localhost:8000/posts/${userId}`)
+fetch(`https://cointab-assignment-gec5.onrender.com/posts/${userId}`)
   .then((res) => res.json())
   .then((data) => {
     // console.log(data);
@@ -73,14 +73,14 @@ function displayUser(user) {
 }
 
 function bulkAdd() {
-  fetch(`http://localhost:8000/posts/${userId}`)
+  fetch(`https://cointab-assignment-gec5.onrender.com/posts/${userId}`)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
 
       if (data.posts && data.posts.length > 0) {
         // If there are posts, send a POST request to the server
-        fetch(`http://localhost:8000/posts/addBulk/${userId}`, {
+        fetch(`https://cointab-assignment-gec5.onrender.com/posts/addBulk/${userId}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -105,7 +105,7 @@ function bulkAdd() {
 
 function downloadInExcel() {
   const downloadLink = document.createElement("a");
-  downloadLink.href = `http://localhost:8000/posts/download-in-excel/${userId}`;
+  downloadLink.href = `https://cointab-assignment-gec5.onrender.com/posts/download-in-excel/${userId}`;
   downloadLink.download = "user_posts.xlsx";
   document.body.appendChild(downloadLink);
   downloadLink.click();
