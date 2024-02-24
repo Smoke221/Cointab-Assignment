@@ -1,0 +1,67 @@
+#user-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+#posts-container {
+    margin-top: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+  color: #666;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+#bulk-add {
+  background-color: #28a745;
+  color: #fff;
+}
+
+#bulk-add:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+#excel-download {
+  background-color: #007bff;
+  color: #fff;
+}
+
+#excel-download:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+#back{
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+#back:hover{
+    background-color: #666;
+}
+.postTitle{
+    font-family: "Ubuntu", sans-serif;
+}
+.postBody{
+    font-family: "Outfit", sans-serif;
+}

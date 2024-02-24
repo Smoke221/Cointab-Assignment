@@ -40,13 +40,18 @@ function displayPosts(posts) {
   postsContainer.innerHTML = "";
 
   posts.forEach((post) => {
+    let div = document.createElement("div");
+
     let postTitle = document.createElement("h4");
     postTitle.textContent = post.title;
+    postTitle.setAttribute("class","postTitle")
 
     let body = document.createElement("p");
     body.textContent = post.body;
+    body.setAttribute("class","postBody")
 
-    postsContainer.append(postTitle, body);
+    div.append(postTitle, body);
+    postsContainer.append(div);
   });
 }
 function displayUser(user) {
@@ -54,12 +59,15 @@ function displayUser(user) {
 
   const userName = document.createElement("h3");
   userName.textContent = user.name;
+  userName.style.fontFamily = "'Protest Strike', sans-serif";
 
   const company = document.createElement("p");
   company.textContent = user.company.name;
+  company.style.fontFamily = "'Outfit', sans-serif"
 
   const city = document.createElement("p");
   city.textContent = user.address.city;
+  city.style.fontFamily = "'Outfit', sans-serif"
 
   userContainer.append(userName, company, city);
 }
@@ -102,4 +110,8 @@ function downloadInExcel() {
   document.body.appendChild(downloadLink);
   downloadLink.click();
   document.body.removeChild(downloadLink);
+}
+
+function redirectToHome() {
+  window.location.href = "index.html";
 }
