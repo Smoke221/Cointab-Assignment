@@ -39,3 +39,10 @@ A web app that allows admins/moderators to fetch all the users from the API and 
 - HTML, CSS, and JS for the frontend.
 - Node.js for the backend.
 - Mongo Atlas for the Database.
+
+## Snapshot
+ ### Home page
+![Screenshot (227)](https://github.com/Smoke221/Cointab-Assignment/assets/114225283/4e628624-506a-4866-a535-81b3648876b4)
+
+ ### Posts page
+ ![Screenshot (228)](https://github.com/Smoke221/Cointab-Assignment/assets/114225283/6f5a45ee-37d9-40c4-a777-be7f50035644)
