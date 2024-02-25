@@ -1,6 +1,6 @@
 # Cointab Assignment
 
-A web app that allows admins/moderators to fetch all the users from the API and perform actions. The assignment is provided by Cointab, a service provider that empowers people and businesses with technology, for the Software Engineer position.
+A web app that allows admins/moderators to fetch all the users from the API and perform actions. The assignment is provided by [Cointab](https://www.cointab.net/), a service provider that empowers people and businesses with technology, for the Software Engineer position.
 
 #### The project is deployed [here](https://cointab-assignemnt.netlify.app/).
 
